@@ -3,10 +3,16 @@ main:
   - title: "Recipes"
     url  : /recipes/
 
-  - title: "By Tag"
+  - title: "R by tag"
+    url  : /recipes-by-tag/
+
+  - title: "R by cat"
+    url  : /recipes-by-cat/
+
+  - title: "Tags"
     url  : /tags/
 
-  - title: "By Category"
+  - title: "Categories"
     url  : /categories/
 
   - title: "Posts"
