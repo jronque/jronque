@@ -6,8 +6,8 @@ main:
   - title: "R by tag"
     url  : /recipes-by-tag/
 
-  - title: "R by cat"
-    url  : /recipes-by-cat/
+  - title: "r-cats"
+    url  : /r-cats/
 
   - title: "Tags"
     url  : /tags/
