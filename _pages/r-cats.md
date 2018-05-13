@@ -22,10 +22,3 @@ All recipes in alphabetical order
     <li><a href="{{ item.url }}" alt="{{ item.title }}">{{ item.title }}</a></li>
 {% endfor %}
 </ol>
-
-
-
-<!-- Map and flatten -->
-<!-- {% assign article_tags =  site.articles | map: 'tags' | join: ',' | join: ',' | split: ',' %}
-{% assign tutorial_tags =  site.tutorials | map: 'tags' | join: ',' | join: ',' | split: ',' %}
-{% assign all_tags =  site.tutorials | map: 'tags' | join: ',' | join: ',' | split: ',' %} -->
