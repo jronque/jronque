@@ -1,12 +1,17 @@
 ---
-title: Lorem ipsum
-date: 2018-05-07 16:23 -0700
+title: Baked salmon with lemon
+date: 2018-05-07
+header:
+  teaser: /assets/images/salmon.jpg
+  image_description: "What it looks like cooked"
+  caption: "nom nom nom"
 categories:
   - Seafood
+ingredients: ["salmon", "lemon"]
+equipment: ["tinfoil"]
 tags:
-  - cookies
   - baking
-  - oatmeal
+  - healthy
 ---
 
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec mollis. Quisque

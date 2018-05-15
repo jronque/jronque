@@ -4,6 +4,7 @@ date: 2018-05-07 15:18 -0700
 categories:
   - Pastry
   - Dessert
+ingredients: ["dough", "oats"]
 tags:
   - cookies
   - baking

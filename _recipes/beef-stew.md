@@ -1,15 +1,10 @@
 ---
 title: "Beef stew"
-date: 2018-05-07 15:20 -0700
-header:
-  teaser: /assets/images/salmon.jpg
-  image: /assets/images/image-alignment-1200x4002.jpg
-  image_description: "A description of the image"
-  caption: "nom nom nom"
+date: 2018-05-08
 categories:
   - Meat
+ingredients: ["beef", "potatoes", "carrots", "peas"]
 tags:
-  - beef
   - stew
   - hearty
 ---

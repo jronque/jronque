@@ -1,13 +1,13 @@
 ---
 title: "Chocolate Chip Cookies"
-date: 2018-05-07 15:17 -0700
+date: 2018-05-07
 categories:
   - Pastry
   - Dessert
+ingredients: ["dough", "chocolate"]
 tags:
   - cookies
   - baking
-  - chocolate
 ---
 
 A chocolate chip cookie is a drop cookie that originated in the United States
