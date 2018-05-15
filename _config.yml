@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "dark" # "default" # "air", "aqua", "contrast", "dark
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Kotya & Masya: jronque jronque"
+title                    : "Jronque Jronque"
 title_separator          : "-"
 name                     : "Dmitry Avtonomov"
 description              : "Keeping track of cooking recipes that we try or come up with."
@@ -203,11 +203,11 @@ timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 # Plugins (previously gems:)
 plugins:
   - jekyll-paginate
-  - jekyll-category-pages
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jemoji
+  # - jekyll-archives
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -238,16 +238,16 @@ whitelist:
 #   path: /tags/
 
 # https://github.com/jekyll/jekyll-archives
-jekyll-archives:
-  enabled:
-    - categories
-    - tags
-  layouts:
-    category: archive-taxonomy
-    tag: archive-taxonomy
-  permalinks:
-    category: /categories/:name/
-    tag: /tags/:name/
+# jekyll-archives:
+#   enabled:
+#     - categories
+#     - tags
+#   layouts:
+#     category: archive-taxonomy
+#     tag: archive-taxonomy
+#   permalinks:
+#     category: /categories/:name/
+#     tag: /tags/:name/
 
 
 # HTML Compression
@@ -286,3 +286,5 @@ defaults:
       share: true
       comments: false
       related: true
+
+category_index: true
