@@ -7,28 +7,41 @@ module Jekyll
       safe true
 
       def generate(site)
-        puts("Running plugin `#{PLUGIN_NAME}` generate(site) method")
+        puts("Running plugin `#{PLUGIN_NAME}` generate() method")
         if site.layouts.key? LAYOUT_NAME
           puts("site.layouts.#{LAYOUT_NAME} exists, all good")
           dir = site.config['taxonomy_dir'] || 'taxonomies'
 
-          site.collections.each_key do |collection|
-            puts("Plugin #{PLUGIN_NAME} processing collection `#{collection}`")
+          site.collections.each do |col_name, col_data|
+            puts("Plugin #{PLUGIN_NAME} processing collection `#{col_name}`, label `#{col_data.label}`")
+            if (col_name == "posts")
+              puts("Skipping `posts` collection")
+              next
+            end
+            col_slug = Utils.slugify(col_name)
+            # site.pages << CollectionTaxonomyPage.new(site, site.source, File.join(dir, col_slug), col, )
+            col_data.docs.each do |doc|
+              puts("====================")
+              puts doc.data
+              puts("--------------------")
+              puts doc
+              puts("====================")
+            end
           end
 
-          site.categories.each_key do |cat|
-            cat_slug = Utils.slugify(cat)
-            site.pages << CollectionTaxonomyPage.new(site, site.source, File.join(dir, cat_slug), cat_slug)
-          end
+          # site.categories.each_key do |cat|
+          #   cat_slug = Utils.slugify(cat)
+          #   site.pages << CollectionTaxonomyPage.new(site, site.source, File.join(dir, cat_slug), cat_slug)
+          # end
         else
-          puts("site.layouts.#{LAYOUT_NAME} doesn't exist, not running the plugin")
+          puts("site.layouts.#{LAYOUT_NAME} doesn't exist, not running plugin `#{PLUGIN_NAME}`")
         end
       end
     end
 
     class CollectionTaxonomyPage < Page
-      def initialize(site, base, dir, category)
-        puts("Running plugin #{PLUGIN_NAME} initialize(site, base, dir, category) method.\n" +
+      def initialize(site, base, dir, collection, tax_name, tax_slug)
+        puts("Running plugin #{PLUGIN_NAME} initialize() method.\n" +
           "   site=#{site}, base=#{base}, dir=#{dir}, category=#{category}")
         @site = site
         @base = base
@@ -37,10 +50,15 @@ module Jekyll
 
         self.process(@name)
         self.read_yaml(File.join(base, '_layouts'), "#{LAYOUT_NAME}.html")
-        self.data['category'] = category
+        self.data['category'] = tax_name
 
-        category_title_prefix = site.config['category_title_prefix'] || "#{category} Category: "
-        self.data['title'] = "#{category_title_prefix}#{category}-yohoho"
+        self.data['title'] = "Col: #{collection}, Tax_name: #{tax_name}, slug: #{tax_slug}"
+      end
+    end
+
+    class String
+      def titlecase
+        split(/([[:alpha:]]+)/).map(&:capitalize).join
       end
     end
 
