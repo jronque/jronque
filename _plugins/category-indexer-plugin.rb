@@ -1,12 +1,35 @@
 module Jekyll
   module CollectionsTaxonomy
-    LAYOUT_NAME = "collection-index"
     PLUGIN_NAME = "collection-indexer"
+    LAYOUT_NAME = "collection-index"
+
+    class CollectionTaxonomyPageGenerator < Generator
+      safe true
+
+      def generate(site)
+        puts("Running plugin `#{PLUGIN_NAME}` generate(site) method")
+        if site.layouts.key? LAYOUT_NAME
+          puts("site.layouts.#{LAYOUT_NAME} exists, all good")
+          dir = site.config['taxonomy_dir'] || 'taxonomies'
+
+          site.collections.each_key do |collection|
+            puts("Plugin #{PLUGIN_NAME} processing collection `#{collection}`")
+          end
+
+          site.categories.each_key do |cat|
+            cat_slug = Utils.slugify(cat)
+            site.pages << CollectionTaxonomyPage.new(site, site.source, File.join(dir, cat_slug), cat_slug)
+          end
+        else
+          puts("site.layouts.#{LAYOUT_NAME} doesn't exist, not running the plugin")
+        end
+      end
+    end
 
     class CollectionTaxonomyPage < Page
       def initialize(site, base, dir, category)
         puts("Running plugin #{PLUGIN_NAME} initialize(site, base, dir, category) method.\n" +
-          "   category=#{category}, base=#{base}, dir=#{dir}")
+          "   site=#{site}, base=#{base}, dir=#{dir}, category=#{category}")
         @site = site
         @base = base
         @dir = dir
@@ -21,26 +44,5 @@ module Jekyll
       end
     end
 
-    class CollectionTaxonomyPageGenerator < Generator
-      safe true
-
-      def generate(site)
-        puts("Running plugin #{PLUGIN_NAME} generate(site) method")
-        if site.layouts.key? LAYOUT_NAME
-          puts("site.layouts.#{LAYOUT_NAME} exists, all good")
-          dir = site.config['taxonomy_dir'] || 'taxonomies'
-
-          site.collections.each_key do |collection|
-            puts("Plugin #{PLUGIN_NAME} processing collection `#{collection}`")
-          end
-
-          site.categories.each_key do |category|
-            site.pages << CollectionTaxonomyPage.new(site, site.source, File.join(dir, category), category)
-          end
-        else
-          puts("site.layouts.#{LAYOUT_NAME} doesn't exist, not running the plugin")
-        end
-      end
-    end
   end
 end
